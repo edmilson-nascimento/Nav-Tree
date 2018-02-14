@@ -133,3 +133,43 @@ Em outros report's eu uso este para habilitar/desabilitar e preencher campos da 
   method initial .
   endmethod .                    "initial
 ```
+
+### protected section ###
+
+#### on_added_function ####
+Neste temos a chamada do outro método, process, que será referente a ações requisitas apos a geração do relatório.
+```abap
+  method on_added_function .
+
+    me->process( ) .
+
+  endmethod .                    "on_added_function
+```
+
+#### on_link_click ####
+A ação do hotspot, será contemplada nesse método, de forma a controlar de acordo com a coluna onde foi iniciada a ação.
+```abap
+  method on_link_click .
+
+    data:
+      columns type ref to cl_salv_columns_table .
+
+    case column .
+
+      when 'NAVTREE' .
+
+        me->change(
+          exporting
+            row = row
+        ).
+
+        columns = me->salv_table->get_columns( ).
+        columns->set_optimize( if_salv_c_bool_sap=>true ).
+        me->salv_table->refresh( ) .
+
+      when others .
+
+    endcase .
+
+  endmethod .
+```
