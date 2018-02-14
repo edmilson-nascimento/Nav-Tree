@@ -25,7 +25,16 @@ Alguns métodos estão sem desenvolvimento, mas eu preferi manter para possívei
 	* [search](#del_items)  
 	
 ## Informações Exibidas ##
+Uma tela de seleção com as principais chaves é exibida.
+![N|Solid](https://uploaddeimagens.com.br/images/001/289/531/original/tela-de-selecao.png)
 
+Apos, é exibido o relatório com um `hotspot` que simboliza uma `navegação tree`, conforme imagem.
+![N|Solid](https://uploaddeimagens.com.br/images/001/289/535/original/click-01.png?1518610599)
+
+A lista é expandida ao clicar no icone da pasta, fazendo com que mais detalhes sejam exibidos, e no caso, voos da cia area referente.
+![N|Solid](https://uploaddeimagens.com.br/images/001/289/537/original/click-02.png?1518610742)
+
+Essa funcionalidade é explica nos metodos abaixo.
 
 ### public section ###
 
