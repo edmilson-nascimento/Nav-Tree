@@ -1,20 +1,20 @@
 # Expansão de itens (editando) #
 
 [![N|Solid](https://wiki.scn.sap.com/wiki/download/attachments/1710/ABAP%20Development.png?version=1&modificationDate=1446673897000&api=v2)](https://www.sap.com/brazil/developer.html)
-Não encontrei um nome mais simples para ser título do projeto, logo, eu informei como ST12 ~porque o projeto é meu e eu coloco o nome mais facil de ser encontrado por mim depois~ por ser um ALV semelhante ao exibido pela transação ST12. Desconsiderar algum problema de indentação. Eu tenho um serio problema de limitação do `case`. Como ABAP não é uma linguagem `case sensitive`, ~~é muita perca de tempo querer colocar tamanho de fonte em `upper case`~~ eu não vejo necessidade de alterar o `case` sendo que o editor ja separa com cores diferentes as palavras reservadas. Mas ~~o desenvolvedor não consegue ver as cores diferentes e ainda quer colocacr em casa diferente~~ os outros ABAPer's que compartilham o mesmo usuário pensam diferente de mim, então eu faço sem `Pretty Printer`.
+Não encontrei um nome mais simples para ser título do projeto, logo, eu informei como ST12 ~porque o projeto é meu e eu coloco o nome mais facil de ser encontrado por mim depois~ por ser um ALV semelhante ao exibido pela transação ST12. Desconsiderar algum problema de indentação. Eu tenho um sério problema de limitação do `case`. Como ABAP não é uma linguagem `case sensitive`, ~~é muita perca de tempo querer colocar tamanho de fonte em `upper case`~~ eu não vejo necessidade de alterar o `case` sendo que o editor já separa com cores diferentes as palavras reservadas. Mas ~~o desenvolvedor não consegue ver as cores diferentes e ainda quer colocacr em casa diferente~~ os outros ABAPer's que compartilham o mesmo usuário pensam diferente de mim, então eu faço sem `Pretty Printer`.
 
-Neste exemplo eu tenho uma mostra de como seria se dentro de um relatório eu pudesse expandir os Itens (ou qualquer outra informação que seja) de forma que fique como um _subtotal ao contrario_. Como padrão na maioria dos meus desenvolvimentos, foi usado a classe `CL_GUI_ALV_GRID`. Alguns dados de Companhias Aereas serão exibidos e apos expandir serão mostrados os vôos referente a cia area. As aplicações são ilimitadas, basta **saber adequar seu cenário com a tecnologia que melhor atende**.
+Neste exemplo eu tenho uma mostra de como seria se dentro de um relatório eu pudesse expandir os Itens (ou qualquer outra informação que seja) de forma que fique como um _subtotal ao contrário_. Como padrão na maioria dos meus desenvolvimentos, foi usado a classe `CL_GUI_ALV_GRID`. Alguns dados de Companhias Aéreas serão exibidos e após expandir serão mostrados os vôos referente a cia aérea. As aplicações são ilimitadas, basta **saber adequar seu cenário com a tecnologia que melhor atende**.
 
 ## Informações Exibidas ##
 Uma tela de seleção com as principais chaves é exibida.
 
 ![N|Solid](https://uploaddeimagens.com.br/images/001/289/531/original/tela-de-selecao.png)
 
-Apos, é exibido o relatório com um `hotspot` que simboliza uma `navegação tree`, conforme imagem.
+Após, é exibido o relatório com um `hotspot` que simboliza uma `navegação tree`, conforme imagem.
 
 ![N|Solid](https://uploaddeimagens.com.br/images/001/289/535/original/click-01.png?1518610599)
 
-A lista é expandida ao clicar no icone da pasta, fazendo com que mais detalhes sejam exibidos, e no caso, voos da cia area referente.
+A lista é expandida ao clicar no ícone da pasta, fazendo com que mais detalhes sejam exibidos, e no caso, voos da cia aérea referente.
 
 ![N|Solid](https://uploaddeimagens.com.br/images/001/289/537/original/click-02.png?1518610742)
 
@@ -42,7 +42,7 @@ Alguns métodos estão sem desenvolvimento, mas eu preferi manter para possívei
 ### public section ###
 
 #### display_data ####
-Tendo o objetivo de exibir as informações, fazer considerações finais referente a exibição, como ordenação, hotspot e outros. Normalmente eu faço a chamada de subrotinas internas em métodos privados, mas no caso, preferi mater tudo dentro desse mesmo metodo.
+Tendo o objetivo de exibir as informações, fazer considerações finais referente a exibição, como ordenação, hotspot e outros. Normalmente eu faço a chamada de sub-rotinas internas em métodos privados, mas no caso, preferi manter tudo dentro desse mesmo metodo.
 ```abap
   method display_data .
 
@@ -137,7 +137,7 @@ Em outros report's eu uso este para habilitar/desabilitar e preencher campos da 
 ### protected section ###
 
 #### on_added_function ####
-Neste temos a chamada do outro método, process, que será referente a ações requisitas apos a geração do relatório.
+Neste temos a chamada do outro método, process, que será referente a ações requisitas após a geração do relatório.
 ```abap
   method on_added_function .
 
@@ -176,7 +176,7 @@ A ação do hotspot, será contemplada nesse método, de forma a controlar de ac
 ### private section ###
 
 #### add_items ####
-Ao clicar no `hotspot`, novos itens são adicionados, o que passa ao usuário a impressão de um nova lista expandida. Isso é feito atravez do método abaixo.
+Ao clicar no `hotspot`, novos itens são adicionados, o que passa ao usuário a impressão de um nova lista expandida. Isso é feito através do método abaixo.
 ```abap
   method add_items .
 
@@ -227,7 +227,7 @@ Ao clicar no `hotspot`, novos itens são adicionados, o que passa ao usuário a 
 ```
 
 #### change ####
-Esse metodo, detem a chamada de outros dois metodos, de acordo com o icone que foi clicado, pode ser para expandir ou recolher uma lista. Isso é definido na rotina abaixo.
+Esse método, detém a chamada de outros dois métodos, de acordo com o ícone que foi clicado, pode ser para expandir ou recolher uma lista. Isso é definido na rotina abaixo.
 ```abap
   method change .
 
@@ -262,7 +262,7 @@ Esse metodo, detem a chamada de outros dois metodos, de acordo com o icone que f
 ```
 
 #### del_items ####
-Ao clicar no icone, quando ja foi expandido, o usuário pode tambem recolher essa lista, e isso é contemplado na rotina a seguir.
+Ao clicar no ícone, quando ja foi expandido, o usuário pode também recolher essa lista, e isso é contemplado na rotina a seguir.
 ```abap
   method del_items .
 
@@ -316,7 +316,7 @@ A mostra de informações é feita em dois passos: recuperação de dados e orga
 ```
 
 #### process ####
-Este metodo contempla ações que são executadas apos a geração do relatório, como um `refresh` por exemplo. Para essa solução, **ainda** não foi implementada nenhuma ação, apenas uma atualização mas não esta sendo chamada.
+Este método contempla ações que são executadas apos a geração do relatório, como um `refresh` por exemplo. Para essa solução, **ainda** não foi implementada nenhuma ação, apenas uma atualização mas não esta sendo chamada.
 ```abap
   method process .
 
@@ -338,7 +338,7 @@ Este metodo contempla ações que são executadas apos a geração do relatório
 ```
 
 #### search ####
-Este é responsavel pelo acesso as tabelas e busca das informações no banco de dados, de forma e recuperar esses dados de acordo com os filtros da tela de selação.
+Este é responsável pelo acesso as tabelas e busca das informações no banco de dados, de forma e recuperar esses dados de acordo com os filtros da tela de seleção.
 ```abap
   method search .
 
