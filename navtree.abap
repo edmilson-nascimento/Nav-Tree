@@ -1,10 +1,8 @@
-report yteste message-id >0 .
+report navtree message-id >0 .
 
 *--------------------------------------------------------------------*
 *- Anotações
 *--------------------------------------------------------------------*
-*-    /SSA/STA                       / /SSA/STA
-*-   FORM                           / LIST_TRCANALYSES_FULLSCREEN
 
 *--------------------------------------------------------------------*
 *- Tipos SAP
@@ -170,9 +168,6 @@ class lcl_report implementation.
         column->set_long_text( 'Nível' ).
         column->set_symbol( if_salv_c_bool_sap=>true ).
 
-*       column ?= columns->get_column( 'TRFUNCTION' ).
-*       column->set_long_text( 'Tipo de request' ).
-
 *       Layout de Zebra
         display = me->salv_table->get_display_settings( ) .
         display->set_striped_pattern( cl_salv_display_settings=>true ) .
@@ -188,6 +183,7 @@ class lcl_report implementation.
       catch cx_salv_existing .
       catch cx_salv_data_error .
       catch cx_salv_object_not_found .
+
     endtry.
 
   endmethod .                    "generate_output
@@ -319,7 +315,6 @@ class lcl_report implementation.
 
       endcase .
 
-
     endif .
 
   endmethod .
@@ -370,13 +365,6 @@ class lcl_report implementation.
   endmethod .
 
   method process .
-
-    data:
-      value type salv_t_row,
-      line  type i .
-
-    field-symbols:
-      <line> type snwd_texts .
 
     case sy-ucomm .
 
@@ -495,3 +483,4 @@ start-of-selection .
 end-of-selection.
 
   objeto->display_data( ) .
+  
