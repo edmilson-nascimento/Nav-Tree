@@ -5,6 +5,18 @@ Não encontrei um nome mais simples para ser título do projeto, logo, eu inform
 
 Neste exemplo eu tenho uma mostra de como seria se dentro de um relatório eu pudesse expandir os Itens (ou qualquer outra informação que seja) de forma que fique como um _subtotal ao contrario_. Como padrão na maioria dos meus desenvolvimentos, foi usado a classe `CL_GUI_ALV_GRID`. Alguns dados de Companhias Aereas serão exibidos e apos expandir serão mostrados os vôos referente a cia area. As aplicações são ilimitadas, basta **saber adequar seu cenário com a tecnologia que melhor atende**.
 
+## Informações Exibidas ##
+Uma tela de seleção com as principais chaves é exibida.
+![N|Solid](https://uploaddeimagens.com.br/images/001/289/531/original/tela-de-selecao.png)
+
+Apos, é exibido o relatório com um `hotspot` que simboliza uma `navegação tree`, conforme imagem.
+![N|Solid](https://uploaddeimagens.com.br/images/001/289/535/original/click-01.png?1518610599)
+
+A lista é expandida ao clicar no icone da pasta, fazendo com que mais detalhes sejam exibidos, e no caso, voos da cia area referente.
+![N|Solid](https://uploaddeimagens.com.br/images/001/289/537/original/click-02.png?1518610742)
+
+Essa funcionalidade é explica nos metodos abaixo.
+
 Alguns métodos estão sem desenvolvimento, mas eu preferi manter para possíveis melhorias. Enquanto eu estiver com acesso ao SAP nessa versão, vou continuar trabalhando com classes locais e no caso dessa é a `LCL_REPORT` com os seguintes métodos:
 
 * public section
@@ -23,18 +35,6 @@ Alguns métodos estão sem desenvolvimento, mas eu preferi manter para possívei
 	* [organize](#add_items)
 	* [process](#change)
 	* [search](#del_items)  
-	
-## Informações Exibidas ##
-Uma tela de seleção com as principais chaves é exibida.
-![N|Solid](https://uploaddeimagens.com.br/images/001/289/531/original/tela-de-selecao.png)
-
-Apos, é exibido o relatório com um `hotspot` que simboliza uma `navegação tree`, conforme imagem.
-![N|Solid](https://uploaddeimagens.com.br/images/001/289/535/original/click-01.png?1518610599)
-
-A lista é expandida ao clicar no icone da pasta, fazendo com que mais detalhes sejam exibidos, e no caso, voos da cia area referente.
-![N|Solid](https://uploaddeimagens.com.br/images/001/289/537/original/click-02.png?1518610742)
-
-Essa funcionalidade é explica nos metodos abaixo.
 
 ### public section ###
 
