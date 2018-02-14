@@ -173,3 +173,228 @@ A ação do hotspot, será contemplada nesse método, de forma a controlar de ac
 
   endmethod .
 ```
+### private section ###
+
+#### add_items ####
+Ao clicar no `hotspot`, novos itens são adicionados, o que passa ao usuário a impressão de um nova lista expandida. Isso é feito atravez do método abaixo.
+```abap
+  method add_items .
+
+    data:
+      index    type syindex,
+      line     type sflight,
+      out_line type me->ty_out,
+      new_line type ref to data .
+
+    field-symbols:
+      <line> type me->ty_out .
+
+    read table me->out assigning <line> index row .
+    if sy-subrc eq 0 .
+      <line>-navtree = '5' .
+      unassign <line> .
+    endif .
+
+    index = row .
+
+    create data new_line like line of me->out .
+    assign new_line->* to <line> .
+
+    loop at me->sflight into line
+                  where carrid eq carrid .
+
+      index = index + 1 .
+
+      <line>-navtree   = '3' .
+      <line>-carrid    = line-carrid .
+
+      read table me->out into out_line
+        with key carrid = carrid .
+      if sy-subrc eq 0 .
+        <line>-carrname  = out_line-carrname .
+        <line>-currcode  = out_line-currcode .
+      endif .
+
+      <line>-connid    = line-connid .
+      <line>-fldate    = line-fldate .
+      <line>-planetype = line-planetype .
+
+      insert <line> into me->out index index .
+
+    endloop .
+
+  endmethod .
+```
+
+#### change ####
+Esse metodo, detem a chamada de outros dois metodos, de acordo com o icone que foi clicado, pode ser para expandir ou recolher uma lista. Isso é definido na rotina abaixo.
+```abap
+  method change .
+
+    field-symbols:
+      <line> type me->ty_out .
+
+    read table me->out assigning <line> index row .
+    if sy-subrc eq 0 .
+
+      case <line>-navtree .
+        when '4' . "Pasta fechada
+
+          me->add_items(
+            exporting
+              row    = row
+              carrid = <line>-carrid
+          ).
+
+        when '5' . "Pasta aberta
+
+          me->del_items(
+            exporting
+              row  = row
+              carrid = <line>-carrid
+          ).
+
+      endcase .
+
+    endif .
+
+  endmethod .
+```
+
+#### del_items ####
+Ao clicar no icone, quando ja foi expandido, o usuário pode tambem recolher essa lista, e isso é contemplado na rotina a seguir.
+```abap
+  method del_items .
+
+    data:
+      index type syindex,
+      line  type sflight .
+
+    field-symbols:
+      <line> type me->ty_out .
+
+    read table me->out assigning <line> index row .
+
+    if sy-subrc eq 0 .
+
+      <line>-navtree = '4' .
+
+      delete me->out where navtree eq '3'
+                       and carrid  eq carrid .
+
+    endif .
+
+  endmethod .
+
+```
+
+#### organize ####
+A mostra de informações é feita em dois passos: recuperação de dados e organização desses dados para que se tornem informações. Essa segunda parte é contemplada neste método.
+```abap
+  method organize .
+
+    data:
+      scarr_line type scarr,
+      out_line   type me->ty_out .
+
+    refresh:
+      me->out .
+
+    loop at scarr into scarr_line .
+
+      out_line-navtree  = '4' .
+      out_line-carrid   = scarr_line-carrid .
+      out_line-carrname = scarr_line-carrname .
+      out_line-currcode = scarr_line-currcode .
+
+      append out_line to me->out .
+      clear  out_line .
+
+    endloop .
+
+  endmethod .
+```
+
+#### process ####
+Este metodo contempla ações que são executadas apos a geração do relatório, como um `refresh` por exemplo. Para essa solução, **ainda** não foi implementada nenhuma ação, apenas uma atualização mas não esta sendo chamada.
+```abap
+  method process .
+
+    case sy-ucomm .
+
+      when 'REFRESH' .
+
+        if me->salv_table is bound .
+
+          me->salv_table->refresh( ) .
+
+        endif .
+
+      when others .
+
+    endcase .
+
+  endmethod .                    "process
+```
+
+#### search ####
+Este é responsavel pelo acesso as tabelas e busca das informações no banco de dados, de forma e recuperar esses dados de acordo com os filtros da tela de selação.
+```abap
+  method search .
+
+    data:
+      filter type bvw_tab_where .
+
+    refresh:
+      scarr, sflight .
+
+    if lines( carrid ) eq 0 .
+    else .
+      append 'carrid in carrid' to filter .
+    endif .
+
+
+    if lines( filter ) eq 0 .
+
+      select *
+        into table scarr
+        from scarr .
+    else .
+
+      select *
+        into table scarr
+        from scarr
+       where (filter) .
+     endif .
+
+    if sy-subrc eq 0 .
+
+      refresh:
+        filter .
+
+      append 'carrid eq scarr-carrid' to filter .
+
+      if lines( connid ) eq 0 .
+      else .
+        append 'and connid in connid' to filter .
+      endif .
+
+
+      if lines( fldate ) eq 0 .
+      else .
+        append 'and fldate in fldate' to filter .
+      endif .
+
+      select *
+        into table sflight
+        from sflight
+         for all entries in scarr
+       where (filter) .
+
+    endif .
+
+    free:
+      filter .
+
+  endmethod.
+```
