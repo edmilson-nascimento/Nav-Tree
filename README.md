@@ -30,17 +30,94 @@ Alguns métodos estão sem desenvolvimento, mas eu preferi manter para possívei
 ### public section ###
 
 #### display_data ####
-.
+Tendo o objetivo de exibir as informações, fazer considerações finais referente a exibição, como ordenação, hotspot e outros. Normalmente eu faço a chamada de subrotinas internas em métodos privados, mas no caso, preferi mater tudo dentro desse mesmo metodo.
 ```abap
-.
+  method display_data .
+
+    data:
+      events  type ref to cl_salv_events_table,
+      display type ref to cl_salv_display_settings,
+      sorts   type ref to cl_salv_sorts,
+      column  type ref to cl_salv_column_list,
+      columns type ref to cl_salv_columns_table.
+
+    check lines( me->out ) gt 0 .
+
+
+    try.
+        call method cl_salv_table=>factory
+          importing
+            r_salv_table = me->salv_table
+          changing
+            t_table      = me->out .
+
+
+        events = me->salv_table->get_event( ).
+
+        set handler me->on_link_click for events.
+        set handler me->on_added_function for events.
+
+        me->salv_table->set_screen_status(
+          pfstatus      = 'STANDARD_FULLSCREEN'
+          report        = 'SAPLKKBL'
+          set_functions = me->salv_table->c_functions_all ).
+
+
+        columns = me->salv_table->get_columns( ).
+
+        columns->set_optimize( 'X' ).
+        column ?= columns->get_column( 'NAVTREE' ).
+        column->set_icon( if_salv_c_bool_sap=>true ).
+        column->set_cell_type( if_salv_c_cell_type=>hotspot ).
+        column->set_long_text( 'Nível' ).
+        column->set_symbol( if_salv_c_bool_sap=>true ).
+
+*       Layout de Zebra
+        display = me->salv_table->get_display_settings( ) .
+        display->set_striped_pattern( cl_salv_display_settings=>true ) .
+
+*       Ordenação de campos
+        sorts = me->salv_table->get_sorts( ) .
+        sorts->add_sort('CARRID') .
+
+        me->salv_table->display( ).
+
+      catch cx_salv_msg .
+      catch cx_salv_not_found .
+      catch cx_salv_existing .
+      catch cx_salv_data_error .
+      catch cx_salv_object_not_found .
+
+    endtry.
+
+  endmethod .                    "generate_output
 ```
 #### get_data ####
-.
+Como uma arquitetura padrão que uso para recuperação de informações, esse método por sua vez faz chamada de outros dois que são responsáveis de buscar e organizar as informações.
 ```abap
-.
+  method get_data.
+
+    me->search(
+      exporting
+        carrid  = carrid
+        connid  = connid
+        fldate  = fldate
+      changing
+        scarr   = scarr
+        sflight = sflight
+    ).
+
+    me->organize(
+      exporting
+        scarr   = scarr
+        sflight = sflight
+    ).
+
+  endmethod.                    "GET_DATA
 ```
 #### initial ####
-.
+Em outros report's eu uso este para habilitar/desabilitar e preencher campos da tela de seleção. Preferi manter para que eu posso fazer melhorias em versões posteriores.
 ```abap
-.
+  method initial .
+  endmethod .                    "initial
 ```
