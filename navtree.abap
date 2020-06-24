@@ -1,8 +1,5 @@
 report navtree message-id >0 .
 
-*--------------------------------------------------------------------*
-*- Anotações
-*--------------------------------------------------------------------*
 
 *--------------------------------------------------------------------*
 *- Tipos SAP
@@ -23,30 +20,30 @@ class lcl_report definition.
   public section.
 
     types:
-    begin of ty_carrid,
-      sign   type sign,
-      option type option,
-      low    type sflight-carrid,
-      high   type sflight-carrid,
-    end of ty_carrid,
+      begin of ty_carrid,
+        sign   type sign,
+        option type option,
+        low    type sflight-carrid,
+        high   type sflight-carrid,
+      end of ty_carrid,
 
-    begin of ty_connid,
-      sign   type sign,
-      option type option,
-      low    type sflight-connid,
-      high   type sflight-connid,
-    end of ty_connid,
+      begin of ty_connid,
+        sign   type sign,
+        option type option,
+        low    type sflight-connid,
+        high   type sflight-connid,
+      end of ty_connid,
 
-    begin of ty_fldate,
-      sign   type sign,
-      option type option,
-      low    type sflight-fldate,
-      high   type sflight-fldate,
-    end of ty_fldate,
+      begin of ty_fldate,
+        sign   type sign,
+        option type option,
+        low    type sflight-fldate,
+        high   type sflight-fldate,
+      end of ty_fldate,
 
-    carrid_range type table of ty_carrid,
-    connid_range type table of ty_connid,
-    fldate_range type table of ty_fldate .
+      carrid_range type table of ty_carrid,
+      connid_range type table of ty_connid,
+      fldate_range type table of ty_fldate.
 
 
     methods display_data .
@@ -63,33 +60,33 @@ class lcl_report definition.
 
     methods on_added_function
       for event if_salv_events_functions~added_function
-             of cl_salv_events_table
+                  of cl_salv_events_table
       importing e_salv_function.
 
     methods on_link_click
       for event if_salv_events_actions_table~link_click
-             of cl_salv_events_table
+                  of cl_salv_events_table
       importing row
-                column.
+                  column.
 
   private section .
 
     types:
-    begin of ty_out,
-      navtree   type char2,
-      carrid    type scarr-carrid,
-      carrname  type scarr-carrname,
-      currcode  type scarr-currcode,
-      connid    type sflight-connid,
-      fldate    type sflight-fldate,
-      planetype type sflight-planetype,
-    end of ty_out.
+      begin of ty_out,
+        navtree   type char2,
+        carrid    type scarr-carrid,
+        carrname  type scarr-carrname,
+        currcode  type scarr-currcode,
+        connid    type sflight-connid,
+        fldate    type sflight-fldate,
+        planetype type sflight-planetype,
+      end of ty_out.
 
     data:
       salv_table type ref to cl_salv_table,
       out        type table of ty_out,
       sflight    type table of sflight,
-      scarr      type table of scarr .
+      scarr      type table of scarr.
 
     methods add_items
       importing
@@ -145,7 +142,7 @@ class lcl_report implementation.
           importing
             r_salv_table = me->salv_table
           changing
-            t_table      = me->out .
+            t_table      = me->out.
 
 
         events = me->salv_table->get_event( ).
@@ -247,7 +244,7 @@ class lcl_report implementation.
       index    type syindex,
       line     type sflight,
       out_line type me->ty_out,
-      new_line type ref to data .
+      new_line type ref to data.
 
     field-symbols:
       <line> type me->ty_out .
@@ -323,7 +320,7 @@ class lcl_report implementation.
 
     data:
       index type syindex,
-      line  type sflight .
+      line  type sflight.
 
     field-symbols:
       <line> type me->ty_out .
@@ -345,7 +342,7 @@ class lcl_report implementation.
 
     data:
       scarr_line type scarr,
-      out_line   type me->ty_out .
+      out_line   type me->ty_out.
 
     refresh:
       me->out .
@@ -407,7 +404,7 @@ class lcl_report implementation.
         into table scarr
         from scarr
        where (filter) .
-     endif .
+    endif .
 
     if sy-subrc eq 0 .
 
@@ -483,4 +480,3 @@ start-of-selection .
 end-of-selection.
 
   objeto->display_data( ) .
-  
