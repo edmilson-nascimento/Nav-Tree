@@ -475,7 +475,6 @@ start-of-selection .
       fldate = fldate[]
   ).
 
-
 end-of-selection.
 
   objeto->display_data( ) .
