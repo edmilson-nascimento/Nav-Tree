@@ -36,7 +36,7 @@ Alguns métodos estão sem desenvolvimento, mas eu preferi manter para possívei
 	* [change](#change)
 	* [del_items](#del_items)  
 	* [organize](#add_items)
-	* [process](#change)
+	* [process](#process)
 	* [search](#del_items)  
 
 ### public section ###
