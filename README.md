@@ -223,7 +223,7 @@ Ao clicar no `hotspot`, novos itens são adicionados, o que passa ao usuário a 
 
     endloop .
 
-  endmethod .
+  endmethod.
 ```
 
 #### change ####
