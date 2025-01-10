@@ -1,5 +1,4 @@
 # Expansão de itens (nav tree) #
-
  
 ![Static Badge](https://img.shields.io/badge/development-abap-blue)
 ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/edmilson-nascimento/Nav-Tree)
