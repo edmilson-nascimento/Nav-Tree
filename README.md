@@ -1,6 +1,13 @@
 # Expansão de itens (nav tree) #
 
+ 
+![Static Badge](https://img.shields.io/badge/development-abap-blue)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/edmilson-nascimento/quermesse)
+![Static Badge](https://img.shields.io/badge/miriam_batista-abap-red)
+![Static Badge](https://img.shields.io/badge/alexandra_espada-abap-pink)
 
+
+> 🗘 Este documento, assim como o negócio, está em constante fase de melhoria e adaptação.
 
 Não encontrei um nome mais simples para ser título do projeto, logo, eu informei como ST12 ~porque o projeto é meu e eu coloco o nome mais facil de ser encontrado por mim depois~ por ser um ALV semelhante ao exibido pela transação ST12. Desconsiderar algum problema de indentação. Eu tenho um sério problema de limitação do `case`. Como ABAP não é uma linguagem `case sensitive`, ~~é muita perca de tempo querer colocar tamanho de fonte em `upper case`~~ eu não vejo necessidade de alterar o `case` sendo que o editor já separa com cores diferentes as palavras reservadas. Mas ~~o desenvolvedor não consegue ver as cores diferentes e ainda quer colocacr em casa diferente~~ os outros ABAPer's que compartilham o mesmo usuário pensam diferente de mim, então eu faço sem `Pretty Printer`.
 
