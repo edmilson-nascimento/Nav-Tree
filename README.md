@@ -7,7 +7,6 @@
 ![ABAP OO](https://img.shields.io/badge/ABAP_OO-276DC3?style=flat&logo=sap&logoColor=white)
 [![SAP on-premise](https://img.shields.io/badge/SAP-on--premise-blue?style=flat)](https://www.sap.com/index.html)
 [![Commits](https://img.shields.io/github/commit-activity/t/edmilson-nascimento/file-application-server?style=flat)](https://github.com/edmilson-nascimento/file-application-server)
-![Static Badge](https://img.shields.io/badge/SAP-On_Premise-blue?style=flat)
 
 
 > 🗘 Este documento, assim como o negócio, está em constante fase de melhoria e adaptação.
@@ -19,15 +18,15 @@ Neste exemplo eu tenho uma mostra de como seria se dentro de um relatório eu pu
 ## Informações Exibidas ##
 Uma tela de seleção com as principais chaves é exibida.
 
-![N|Solid](https://uploaddeimagens.com.br/images/001/289/531/original/tela-de-selecao.png)
+![Selection Screen](./img/tela-de-selecao.png)
 
 Após, é exibido o relatório com um `hotspot` que simboliza uma `navegação tree`, conforme imagem.
 
-![N|Solid](https://uploaddeimagens.com.br/images/001/289/535/original/click-01.png?1518610599)
+![First Click](./img/click-01.png)
 
 A lista é expandida ao clicar no ícone da pasta, fazendo com que mais detalhes sejam exibidos, e no caso, voos da cia aérea referente.
 
-![N|Solid](https://uploaddeimagens.com.br/images/001/289/537/original/click-02.png?1518610742)
+![Second Click](./img/click-02.png?1518610742)
 
 Essa funcionalidade é explica nos metodos abaixo.
 
