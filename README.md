@@ -11,7 +11,7 @@
 
 > 🗘 Este documento, assim como o negócio, está em constante fase de melhoria e adaptação.
 
-Não encontrei um nome mais simples para ser título do projeto, logo, eu informei como ST12 ~porque o projeto é meu e eu coloco o nome mais facil de ser encontrado por mim depois~ por ser um ALV semelhante ao exibido pela transação ST12. Desconsiderar algum problema de indentação. Eu tenho um sério problema de limitação do `case`. Como ABAP não é uma linguagem `case sensitive`, ~~é muita perca de tempo querer colocar tamanho de fonte em `upper case`~~ eu não vejo necessidade de alterar o `case` sendo que o editor já separa com cores diferentes as palavras reservadas. Mas ~~o desenvolvedor não consegue ver as cores diferentes e ainda quer colocacr em casa diferente~~ os outros ABAPer's que compartilham o mesmo usuário pensam diferente de mim, então eu faço sem `Pretty Printer`.
+Não encontrei um nome mais simples para ser título do projeto, logo, eu informei como ST12 ~~porque o projeto é meu e eu coloco o nome mais fácil de ser encontrado por mim depois~~ por ser um ALV semelhante ao exibido pela transação ST12. Desconsiderar algum problema de indentação. Eu tenho um sério problema de limitação do `case`. Como ABAP não é uma linguagem `case sensitive`, ~~é muita perda de tempo querer colocar tamanho de fonte em `upper case`~~ eu não vejo necessidade de alterar o `case` sendo que o editor já separa com cores diferentes as palavras reservadas. Mas ~~o desenvolvedor não consegue ver as cores diferentes e ainda quer colocar em case diferente~~ os outros ABAPers que compartilham o mesmo usuário pensam diferente de mim, então eu faço sem `Pretty Printer`.
 
 Neste exemplo eu tenho uma mostra de como seria se dentro de um relatório eu pudesse expandir os Itens (ou qualquer outra informação que seja) de forma que fique como um _subtotal ao contrário_. Como padrão na maioria dos meus desenvolvimentos, foi usado a classe `CL_GUI_ALV_GRID`. Alguns dados de Companhias Aéreas serão exibidos e após expandir serão mostrados os vôos referente a cia aérea. As aplicações são ilimitadas, basta **saber adequar seu cenário com a tecnologia que melhor atende**.
 
@@ -28,7 +28,7 @@ A lista é expandida ao clicar no ícone da pasta, fazendo com que mais detalhes
 
 ![Second Click](./img/click-02.png?1518610742)
 
-Essa funcionalidade é explica nos metodos abaixo.
+Essa funcionalidade é explicada nos métodos abaixo.
 
 Alguns métodos estão sem desenvolvimento, mas eu preferi manter para possíveis melhorias. Enquanto eu estiver com acesso ao SAP nessa versão, vou continuar trabalhando com classes locais e no caso dessa é a `LCL_REPORT` com os seguintes métodos:
 
@@ -138,7 +138,7 @@ Como uma arquitetura padrão que uso para recuperação de informações, esse m
   endmethod.                    "GET_DATA
 ```
 #### initial ####
-Em outros report's eu uso este para habilitar/desabilitar e preencher campos da tela de seleção. Preferi manter para que eu posso fazer melhorias em versões posteriores.
+Em outros reports eu uso este para habilitar/desabilitar e preencher campos da tela de seleção. Preferi manter para que eu possa fazer melhorias em versões posteriores.
 ```abap
   method initial .
   endmethod .                    "initial
@@ -272,7 +272,7 @@ Esse método, detém a chamada de outros dois métodos, de acordo com o ícone q
 ```
 
 #### del_items ####
-Ao clicar no ícone, quando ja foi expandido, o usuário pode também recolher essa lista, e isso é contemplado na rotina a seguir.
+Ao clicar no ícone, quando já foi expandido, o usuário pode também recolher essa lista, e isso é contemplado na rotina a seguir.
 ```abap
   method del_items .
 
@@ -326,7 +326,7 @@ A mostra de informações é feita em dois passos: recuperação de dados e orga
 ```
 
 #### process ####
-Este método contempla ações que são executadas apos a geração do relatório, como um `refresh` por exemplo. Para essa solução, **ainda** não foi implementada nenhuma ação, apenas uma atualização mas não esta sendo chamada.
+Este método contempla ações que são executadas após a geração do relatório, como um `refresh` por exemplo. Para essa solução, **ainda** não foi implementada nenhuma ação, apenas uma atualização mas não está sendo chamada.
 ```abap
   method process .
 
